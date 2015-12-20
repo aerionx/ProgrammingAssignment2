@@ -6,16 +6,16 @@
 ## This function stores matrices in memory using scoping rules
 
 makeCacheMatrix <- function(x = matrix()) {
-      m <- NULL
+      i <- NULL
       set <- function(y) {
        
         x <<- y
-        m <<- NULL
+        i <<- NULL
       }
       
       get <- function() x
-      setinverse <- function(solve) m <<- solve
-      getinverse <- function() m
+      setinverse <- function(solve) i <<- solve
+      getinverse <- function() i
       list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)
 }
 
@@ -25,15 +25,15 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
 ## Return a matrix that is the inverse of 'x'
-      m <- x$getinverse()
-      if(!is.null(m)) {
-        message("getting cached data")
-        return(m)
+      i <- x$getinverse()
+      if(!is.null(i)) {
+        message("retriving information from cache")
+        return(i)
       }
       data <- x$get()
-      m <- solve(data, ...)
-      x$setinverse(m)
-      m
+      i <- solve(data, ...)
+      x$setinverse(i)
+      i
 }
 
 ##Examples
@@ -73,7 +73,7 @@ cacheSolve <- function(x, ...) {
 ## [9,] 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.05  0.00
 ## [10,] 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00  0.05
 ##  > cacheSolve(CachedMatrix)
-##  getting cached data
+##  retriving information from cache
 ##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 ## [1,] 0.05 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00  0.00
 ## [2,] 0.00 0.05 0.00 0.00 0.00 0.00 0.00 0.00 0.00  0.00
