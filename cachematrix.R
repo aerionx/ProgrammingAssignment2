@@ -44,6 +44,12 @@ cacheSolve <- function(x, ...) {
 ##     [,1] [,2]
 ## [1,]   -2  1.5
 ## [2,]    1 -0.5
+##  > cacheSolve(CachedA)
+## retriving information from cache
+##      [,1] [,2]
+## [1,]   -2  1.5
+## [2,]    1 -0.5
+
 
 
 ##  > a <- diag (20,10)
